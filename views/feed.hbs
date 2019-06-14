@@ -1,0 +1,159 @@
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="public/stylesheets/prism.css" rel="stylesheet">
+<link href="public/stylesheets/report.css" rel="stylesheet">
+<link href="public/stylesheets/feed.css" rel="stylesheet">
+<link href="public/stylesheets/post.css" rel="stylesheet">
+<link href="public/stylesheets/user_panel_aside.css" rel="stylesheet">
+<script defer src="public/javascripts/readmore.js"></script>
+<script defer src="public/javascripts/report.js"></script>
+<script defer src="public/javascripts/feed.js"></script>
+<!-- TO TOP -->
+<div id="preloader" class="visible"></div>
+<a class="tooltipped btn-floating btn-large waves-effect waves-light red" data-position="left" data-tooltip="Go to the top!" id="to-the-top"><i class="material-icons large" data-role="to-top">keyboard_arrow_up</i></a>
+<div class="modal" id="report">
+	<form action="/d/report/receive" method="post" name="report">
+		<div class="modal-content">
+			<h4>Report</h4>
+			<div class="report__object">
+				<img alt="Reported object" class="z-depth-1" id="report-img" src="">
+				<div class="report__object__info">
+					<a target="_blank"><h4 id="report-group-title"></h4></a>
+					<p>Reported object: <a class="report__object__link" href="" target="_blank">link</a></p>
+				</div>
+			</div>
+			<div class="report__user-entry">
+				<div class="input-field col s12">
+					<select name="reason">
+						<option disabled selected value="another">Choose your option</option>
+						<option value="harassment">Harassment</option>
+						<option value="spam">Spam</option>
+						<option value="verbal-abuse">Verbal Abuse</option>
+						<option value="another">Another</option>
+					</select>
+					<label>Report reason's:</label>
+				</div>
+				<input type="hidden" name="reportType" id="reportType">
+				<input type="hidden" name="reportId" id="reportId">
+				<textarea name="comment" placeholder="Optional (max 130 symbols)"></textarea>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a class="modal-close waves-effect waves-green btn-flat">Close</a>
+			<button type="submit" class="modal-close btn-flat">Send</button>
+		</div>
+	</form>
+</div>
+<header>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper row">
+				<a class="brand-logo" href="/"><4<span>P</span>></a>
+				<a class="sidenav-trigger waves-circle waves-red" data-target="mobile-demo" href="#"><i class="material-icons">menu</i></a>
+				<ul class="right hide-on-med-and-down" id="nav-mobile">
+					<li><a class="waves-circle waves-red btn-floating btn" href="/search"><i class="material-icons">search</i></a>
+					</li><li class="header__profile"><a class="dropdown-trigger header__profile  waves-effect waves-red" id="user-options" data-target="dd-menu"><img alt="{{user.username}}" class="header__profile__img" src="{{user.avatar}}"><i class="tiny material-icons right">more_vert</i></a></li>
+				</ul>
+				<!-- USER MENU (FULL) -->
+				<ul class="dropdown-content" id="dd-menu">
+					<li><a href="/p/{{user.username}}"><i class="material-icons">person</i><span class="menu-item">{{user.title}}</span></a></li><li class="divider"></li>
+					{{#user.privilege}}
+						<li><a href="/d"><i class="material-icons">dashboard</i><span class="menu-item">Dashboard</span></a></li>
+					{{/user.privilege}}
+					<li><a href="/settings"><i class="material-icons">settings</i><span class="menu-item">Settings</span></a></li>
+					<li class="divider"></li>
+					<li><a href="/faq"><i class="material-icons">info</i><span class="menu-item">FAQ</span></a></li>
+					<li class="divider"></li>
+					<li><a href="/logout"><i class="material-icons">exit_to_app</i><span class="menu-item">Logout</span></a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<!-- MOBILE MENU -->
+	<ul class="sidenav" id="mobile-demo">
+		<li><a class="header__profile__mobile df" href="/p/{{user.username}}"><img alt="{{user.title}}" class="header__sidenav__profile-photo" src="{{user.avatar}}"><span class="menu-item">{{user.title}}</span></a></li>
+		<li class="divider"></li>
+        <li>
+            <a class="waves-circle waves-red" href="/search">
+                <i class="material-icons">search</i>
+                Search
+            </a>
+        </li>
+		<li><a class="waves-effect waves-red" href="/msg"><i class="material-icons">message</i>Messages</a></li>
+		<li><a class="waves-effect waves-red" href="/friends"><i class="material-icons">people</i>Friends{{#if isRequest}}<span class="new badge right">{{friendsNotification}}</span>{{/if}}</a></li>
+		<li><a class="waves-effect waves-red" href="/feed"><i class="material-icons">web_asset</i>Feed</a></li>
+		<li><a class="waves-effect waves-red" href="/s"><i class="material-icons">code</i>Snippets</a></li>
+		{{#user.privilege}}
+			<li><a class="waves-effect waves-red" href="/d"><i class="material-icons">dashboard</i>Dashboard</a></li>
+		{{/user.privilege}}
+		<li><a class="waves-effect waves-red" href="/g"><i class="material-icons">people</i>Groups</a></li>
+		<li><a class="waves-effect waves-red" href="/settings"><i class="material-icons">settings</i>Settings</a></li>
+		<li class="divider"></li>
+		<li><a class="waves-effect waves-red" href="/faq"><i class="material-icons">info</i>FAQ</a></li>
+		<li class="divider"></li>
+		<li><a class="waves-effect waves-red" href="/logout"><i class="material-icons">exit_to_app</i>Logout</a></li>
+	</ul>
+</header>
+<div class="wrapper">
+	<main class="z-depth-3">
+		<!-- FEED FILER -->
+		<div class="row">
+			<div class="main__sort__block">
+				<div class="main__sort__item"><a data-role="filter-all">All</a></div>
+				<div class="main__sort__item"><a data-role="filter-groups">Groups</a></div>
+				<div class="main__sort__item"><a data-role="filter-users">Users</a></div>
+			</div>
+		</div>
+		<!-- POSTS -->
+		<div id="posts">
+			{{#each posts}}
+				<div class="post" data-place="{{this.publishing_place}}" data-post="{{this.id}}" data-post-from="{{this.letter}}" data-type="post">
+					<div class="post__header" data-role="header-to-post">
+						<!-- POST HEADER -->
+						<a class='dropdown-trigger btn waves-circle btn-floating waves-effect waves-red' data-target='post-popup-{{this.id}}' href='#'><i class="material-icons">more_horiz</i></a>
+						<!-- Dropdown Structure -->
+						<ul class="dropdown-content" id='post-popup-{{this.id}}'>
+							<li><a class="waves-effect waves-red" data-role="copy-post-link"><i class="material-icons">insert_link</i>CopyLink</a></li>
+							<li><a class="waves-effect waves-red modal-trigger" data-role="report" data-target="report"><i class="material-icons">report</i>Report</a></li>
+						</ul>
+						<a data-img="avatar.jpg" href="/{{this.letter}}/{{this.poster.name}}"><img alt="Publisher name" class="post__header__publisher-img" src="{{this.poster.avatar}}"></a>
+						<div class="post__header__info">
+							<a href="/{{this.letter}}/{{this.poster.name}}"><h4 class="post__header__title">{{this.poster.title}}</h4></a>
+							<p>{{this.date}}</p>
+						</div>
+					</div>
+					<div class="post__body">
+						<p class="post__body__text">{{{this.post_text}}}</p>
+					</div>
+					{{#this.attachmentsExists}}
+						<div class="post__body__photos">
+							{{#each this.attachments.photos}}
+								<img alt="{{../poster.name}}'s image" class="materialboxed" src="{{this}}">
+							{{/each}}
+						</div>
+						<div class="post__body__code">
+							<script src="public/javascripts/prism.js"></script>
+								{{#each this.attachments.snippets}}
+									<pre class="line-numbers"><code class="language-{{this.language}}">{{this.code}}</code></pre>
+								{{/each}}
+						</div>
+					{{/this.attachmentsExists}}
+					<div class="post__footer">
+						<span><a class="btn waves-circle btn-floating waves-effect waves-red"><i class="material-icons" data-role="like" data-post-id="{{this.id}}">thumb_up</i></a><span data-like-place="{{this.id}}">{{this.likes}}</span></span>
+						<span><a class="btn waves-circle btn-floating waves-effect waves-red" href="/post/{{this.publishing_place}}/{{this.id}}"><i class="material-icons">insert_comment</i></a><span>{{this.comments}}</span></span>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</main>
+	<aside class="hide-on-med-and-down">
+		<div class="collection">
+			<a class="collection-item waves-effect waves-red" href="/p/{{user.username}}">Profile</a>
+			<a class="collection-item waves-effect waves-red" href="/msg">Messages</a>
+			<a class="collection-item waves-effect waves-red" href="/friends">{{#if isRequest}}<span class="new badge">{{friendsNotification}}</span>{{/if}}Friends</a>
+			<a class="collection-item  waves-effect waves-red active" href="/feed">Feed</a>
+			<a class="collection-item waves-effect waves-red" href="/s">Snippets</a>
+			<a class="collection-item waves-effect waves-red" href="/g">Groups</a>
+		</div>
+	</aside>
+</div>

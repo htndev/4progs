@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Oswald:400,600|Roboto+Condensed&subset=cyrillic");
+.friends__body__item {
+  padding: 1rem;
+  border: 1px solid #535c68;
+}
+.friends__body__item:first-child {
+  margin-top: 0.5rem;
+}
+.friends__body__item:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+.friends__item__avatar {
+  display: block;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}

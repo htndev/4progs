@@ -1,0 +1,178 @@
+<div id="preloader" class="visible"></div>
+<header>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper row">
+          <a class="brand-logo center" href="/"><4<span>P</span>></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <main class="z-depth-3">
+        <div class="row">
+          <div class="col s12 m8">
+            <div class="row">
+              <div class="col s12">
+                <ul class="tabs hide-on-med-and-up">
+                  <li class="tab col s3"><a class="active" href="#info">Info</a></li>
+                  <li class="tab col s3"><a href="#signinMobile">Sign in</a></li>
+                  <li class="tab col s3"><a href="#signupMobile">Sign up</a></li>
+                </ul>
+              </div>
+              <div class="col s12" id="info">
+                <h1 class="center-align">Welcome to 4progs!</h1>
+                  <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img alt="4progs logo" class="activator" src="public/images/favicon/logo_flat.png">
+                  </div>
+                    <div class="card-content">
+                      <span class="card-title activator">{{config.title}}
+	                      <i class="material-icons right">more_vert</i></span>
+                      <p><a href="/faq">FAQ</a></p>
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title">{{config.title}}<i class="material-icons right">close</i></span>
+                      <p>{{config.desc}}</p>
+	                    <a href="mailto:{{config.email}}">Email us!</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col s12" id="signinMobile">
+                <form action="/signin" method="post" name="siM">
+                <div class="row">
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input class="validate" name='usrLogin' id="icon_login_mobile" type="text">
+                    <label for="icon_login_mobile">Login</label>
+                  </div>
+                </div>
+              </div>
+                <div class="row">
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input class="validate" name='usrPassword' id="icon_pass_mobile" type="password">
+                    <label for="icon_pass_mobile">Password</label>
+                  </div>
+                </div>
+              </div>
+                <div class="row">
+                  <div class="col s12 offset-s4">
+	                  <button class="btn waves-effect waves-light" name="action" type="submit">Sign In</button>
+                  </div>
+                </div>
+              </form>
+              </div>
+              <div class="col s12" id="signupMobile">
+                <form action="/signup" method="post" name="suM">
+                <div class="row">
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">mail_outline</i>
+                    <input class="validate" id="icon_email_mobile" type="text" name="email">
+                    <label for="icon_email_mobile">Email</label>
+                  </div>
+                </div>
+              </div>
+                <div class="row">
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input class="validate" id="icon_new_pass_mobile" type="password" name="password">
+                    <label for="icon_new_pass_mobile">Password</label>
+                  </div>
+                </div>
+              </div>
+                <div class="row">
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input class="validate" id="icon_new_pass_conf_mobile" type="password" name="password-confirmation">
+                    <label for="icon_new_pass_conf_mobile">Password confirmation</label>
+                  </div>
+                </div>
+              </div>
+                <div class="col s12 offset-s4">
+                    <button class="btn waves-effect waves-light" name="action" type="submit">Sign Up</button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+        <div class="col m4 hide-on-small-and-down">
+          <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s6"><a class="active" href="#signin">Sign in</a></li>
+                <li class="tab col s6"><a href="#signup">Sign up</a></li>
+              </ul>
+            </div>
+            <div class="col s12" id="signin">
+              <form action="/signin" method="post" name="siF">
+                <div class="row">
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input class="validate" name='usrLogin' id="icon_login" type="text">
+                    <label for="icon_login">Login</label>
+                  </div>
+                </div>
+              </div>
+                <div class="row">
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input class="validate" name='usrPassword' id="icon_pass" type="password">
+                    <label for="icon_pass">Password</label>
+                  </div>
+                </div>
+              </div>
+                <div class="row">
+                <div class="col s12 offset-s4">
+	                <button class="btn waves-effect waves-light" name="action" type="submit" id="sibtn">Sign In</button>
+                </div>
+              </div>
+              </form>
+            </div>
+            <div class="col s12" id="signup">
+              <form action="/signup" method="post" name="suF">
+                <div class="row">
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">mail_outline</i>
+                    <input class="validate" id="icon_email" type="text" name="email">
+                    <label for="icon_email">Email</label>
+                  </div>
+                </div>
+              </div>
+                <div class="row">
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input class="validate" id="icon_new_pass" type="password" name="password">
+                    <label for="icon_new_pass">Password</label>
+                  </div>
+                </div>
+              </div>
+                <div class="row">
+                <div class="col s12">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input class="validate" id="icon_new_pass_conf" type="password" name="password-confirmation">
+                    <label for="icon_new_pass_conf">Password confirmation</label>
+                  </div>
+                </div>
+              </div>
+                <div class="col s12 offset-s4">
+	                <button class="btn waves-effect waves-light" name="action" type="submit"
+	                        id="subtn">Sign Up</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>

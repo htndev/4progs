@@ -1,0 +1,112 @@
+<link href="public/stylesheets/user_panel_aside.css" rel="stylesheet">
+<link href="public/stylesheets/admin.css" rel="stylesheet">
+<script defer src="public/javascripts/admin.js"></script>
+<div id="preloader" class="visible"></div>
+<link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet">
+<!-- TO TOP -->
+<a class="tooltipped btn-floating btn-large waves-effect waves-light red" data-position="left" data-tooltip="Go to the top!" id="to-the-top"><i class="material-icons large" data-role="to-top">keyboard_arrow_up</i></a>
+<header>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper row">
+				<a class="brand-logo" href="/"><4<span>P</span>></a>
+				<a class="sidenav-trigger waves-circle waves-red" data-target="mobile-demo" href="#"><i class="material-icons">menu</i></a>
+				<!-- TOP NAV -->
+				<ul class="right hide-on-med-and-down" id="nav-mobile">
+					<li><a class="waves-circle waves-red btn-floating btn" href="/search"><i class="material-icons">search</i></a></li>
+					<li class="header__profile"><a class="dropdown-trigger header__profile  waves-effect waves-red" data-target="dd-menu" id="user-options"><img alt="{{user.title}}" class="header__profile__img" src="{{user.avatar}}"><i class="tiny material-icons right">more_vert</i></a></li>
+				</ul>
+				<!-- USER MENU (FULL) -->
+				<ul class="dropdown-content" id="dd-menu">
+					<li><a href="/p/{{user.name}}"><i class="material-icons">person</i><span class="menu-item">{{user.title}}</span></a></li>
+					<li class="divider"></li>
+					{{#user.privilege}}
+						<li><a href="/d"><i class="material-icons">dashboard</i><span class="menu-item">Dashboard</span></a></li>
+					{{/user.privilege}}
+					<li><a href="/edit"><i class="material-icons">settings</i><span class="menu-item">Settings</span></a></li>
+					<li class="divider"></li>
+					<li><a href="/faq"><i class="material-icons">info</i><span class="menu-item">FAQ</span></a></li>
+					<li class="divider"></li>
+					<li><a href="/logout"><i class="material-icons">exit_to_app</i><span class="menu-item">Logout</span></a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<!-- MOBILE MENU -->
+<ul class="sidenav" id="mobile-demo">
+	<li><a class="header__profile__mobile df" href="/p/{{user.username}}"><img alt="{{user.title}}" class="header__sidenav__profile-photo" src="{{user.avatar}}"><span class="menu-item">{{user.title}}</span></a></li>
+	<li class="divider"></li>
+    <li>
+        <a class="waves-circle waves-red" href="/search">
+            <i class="material-icons">search</i>
+            Search
+        </a>
+    </li>
+	<li><a class="waves-effect waves-red" href="/msg"><i class="material-icons">message</i>Messages</a></li>
+	<li><a class="waves-effect waves-red" href="/friends"><i class="material-icons">people</i>Friends{{#if isRequest}}<span class="new badge">{{friendsNotification}}</span>{{/if}}</a></li>
+	<li><a class="waves-effect waves-red" href="/feed"><i class="material-icons">web_asset</i>Feed</a></li>
+	<li><a class="waves-effect waves-red" href="/s"><i class="material-icons">code</i>Snippets</a></li>
+	{{#user.privilege}}
+		<li><a class="waves-effect waves-red" href="/d"><i class="material-icons">dashboard</i>Dashboard</a></li>
+	{{/user.privilege}}
+	<li><a class="waves-effect waves-red" href="/g"><i class="material-icons">people</i>Groups</a></li>
+	<li><a class="waves-effect waves-red" href="/edit"><i class="material-icons">settings</i>Settings</a></li>
+	<li class="divider"></li>
+	<li><a class="waves-effect waves-red" href="/faq"><i class="material-icons">info</i>FAQ</a></li>
+	<li class="divider"></li>
+	<li><a class="waves-effect waves-red" href="/logout"><i class="material-icons">exit_to_app</i>Logout</a></li>
+</ul>
+</header>
+<div class="btn-wrapper">
+	<ul class='dropdown-content' id='admin-abilities'>
+		<li><a href="/d">General</a></li>
+		<li><a href="/d/reports">Reports</a></li>
+		{{#if user.isAdmin}}
+			<li><a href="/d/admins">Admins</a></li>
+		{{/if}}
+
+		<li><a href="/d/verify">Verification</a></li>
+		<li><a href="/d/faq">FAQs</a></li>
+	</ul>
+	<a class="btn-floating btn-large waves-effect waves-light red dropdown-trigger tooltipped" data-tooltip="Navigation in admin panel" data-position="left" data-target="admin-abilities" id="admin-abils"><i class="material-icons">developer_board</i></a>
+</div>
+<div class="container">
+	<main class="z-depth-2">
+		<div class="row">
+			<div class="col s12">
+				<h1 class="center-align">General panel</h1>
+				<div class="row">
+					<div class="container">
+						<form action="/d/general/save" method="post" name="general">
+							<div class="input-field col s12 m6">
+								<input id="web-site-title" name="title" type="text" value="{{config.title}}">
+								<label for="web-site-title">Web-site Title</label>
+							</div>
+							<div class="input-field col s12 m6">
+								<input class="validate" id="corp-email" name="email" type="email" value="{{config.email}}">
+								<label for="corp-email">Email</label>
+							</div>
+							<div class="input-field col s12">
+								<textarea class="materialize-textarea" id="web-site-description" name="desc">{{config.desc}}</textarea>
+								<label for="web-site-description">Web-site description</label>
+							</div>
+							<div class="col s12">
+								<button class="btn red" type="submit">Save</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<aside class="hide-on-med-and-down">
+		<div class="collection">
+			<a class="collection-item waves-effect waves-red" href="/p/{{user.username}}">Profile</a>
+			<a class="collection-item waves-effect waves-red" href="/msg">Messages</a>
+			<a class="collection-item waves-effect waves-red" href="/friends">{{#if isRequest}}<span class="new badge">{{friendsNotification}}</span>{{/if}}Friends</a>
+			<a class="collection-item waves-effect waves-red" href="/feed">Feed</a>
+			<a class="collection-item waves-effect waves-red" href="/s">Snippets</a>
+			<a class="collection-item waves-effect waves-red" href="/g">Groups</a>
+		</div>
+	</aside>
+</div>

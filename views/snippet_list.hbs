@@ -1,0 +1,235 @@
+<!-- TO TOP -->
+<link href="public/stylesheets/main.css" rel="stylesheet">
+<link href="public/stylesheets/prism.css" rel="stylesheet">
+<link href="public/stylesheets/report.css" rel="stylesheet">
+<link href="public/stylesheets/user_panel_aside.css" rel="stylesheet">
+<style>
+	.row .col.snippet {
+		background:    #222f3e;
+		padding:       .5rem 1rem;
+		border-radius: .3rem;
+		margin-bottom: .5rem;
+		position:      relative;
+	}
+
+	.row .col.snippet:nth-child(even) {
+		margin-left: 1rem;
+	}
+
+	.snippet__title {
+		color:       #d1c4e9;
+		font-family: 'Oswald', sans-serif;
+		font-size:   1.9em;
+	}
+
+	.snippet__description {
+		color:     #e0f2f1;
+		font-size: 1.2em;
+		margin:    1rem 0;
+	}
+
+	.snippet__language {
+		color:       #c0392b;
+		font-weight: 800;
+	}
+
+	.snippet__delete {
+		position: absolute;
+		right:    .5rem;
+		top:      .5rem;
+	}
+
+	.snippet__type {
+		color:       #D1D8E0;
+		margin-top:  .5rem;
+		font-family: 'Open Sans', sans-serif;
+		font-style:  italic;
+	}
+
+	@media all and (max-width: 667px) {
+		.row .col.snippet:nth-child(even) {
+			margin-left: 0;
+		}
+	}
+</style>
+<script defer src="public/javascripts/snippet.js"></script>
+<div id="preloader" class="visible"></div>
+<a class="tooltipped btn-floating btn-large waves-effect waves-light red" data-position="left" data-tooltip="Go to the top!" id="to-the-top"><i class="material-icons large" data-role="to-top">keyboard_arrow_up</i></a>
+<div class="modal" id="report">
+      <form action="/">
+        <div class="modal-content">
+          <h4>Report</h4>
+          <div class="report__object">
+            <img alt="Reported object" class="z-depth-1" id="report-img" src="">
+            <div class="report__object__info">
+              <a href="#" target="_blank"><h4 id="report-group-title"></h4></a>
+              <p>Post link: <a class="report__object__link" href="#" target="_blank">Go to post</a></p>
+            </div>
+          </div>
+          <div class="report__user-entry">
+            <div class="input-field col s12">
+              <select>
+                <option disabled selected value="">Choose your option</option>
+                <option value="harassment">Harassment</option>
+                <option value="spam">Spam</option>
+                <option value="verbal-abuse">Verbal Abuse</option>
+                <option value="another">Another</option>
+              </select>
+              <label>Report reason's:</label>
+            </div>
+            <textarea name="user-report-content" placeholder="Optional (max 130 symbols)"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+          <a class="modal-close waves-effect waves-green btn-flat"><input type="submit" value="Send"></a>
+        </div>
+      </form>
+    </div>
+<header>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper row">
+				<a class="brand-logo" href="/"><4<span>P</span>></a>
+				<a class="sidenav-trigger waves-circle waves-red" data-target="mobile-demo"><i class="material-icons">menu</i></a>
+				<!-- TOP NAV -->
+				<ul class="right hide-on-med-and-down" id="nav-mobile">
+					<li><a class="waves-circle waves-red btn-floating btn" href="/search"><i class="material-icons">search</i></a></li>
+					<li class="header__profile"><a class="dropdown-trigger header__profile  waves-effect waves-red" data-target="dd-menu" href="" id="user-options"><img alt="{{user.title}}" class="header__profile__img" src="{{user.avatar}}"><i class="tiny material-icons right">more_vert</i></a></li>
+				</ul>
+				<!-- USER MENU (FULL) -->
+            <ul class="dropdown-content" id="dd-menu">
+              <li>
+                <a href="/p/{{user.username}}" id="username">
+                  <i class="material-icons">person</i>
+                  <span class="menu-item">{{user.title}}</span>
+                </a>
+              </li>
+              <li class="divider"></li>
+	            {{#if user.privilege}}
+		            <li>
+                <a href="/d">
+                  <i class="material-icons">dashboard</i>
+                  <span class="menu-item">Dashboard</span>
+                </a>
+              </li>
+	            {{/if}}
+	            <li>
+                <a href="/settings">
+                  <i class="material-icons">settings</i>
+                  <span class="menu-item">Settings</span>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="/faq">
+                  <i class="material-icons">info</i>
+                  <span class="menu-item">FAQ</span>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="/logout">
+                  <i class="material-icons">exit_to_app</i>
+                  <span class="menu-item">Logout</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+	<!-- MOBILE MENU -->
+      <ul class="sidenav" id="mobile-demo">
+        <li>
+          <a class="header__profile__mobile df" href="/p/{{user.username}}">
+            <img alt="{{user.title}}" class="header__sidenav__profile-photo" src="{{user.avatar}}">
+            <span class="menu-item" id="userTitle">{{user.title}}</span>
+          </a>
+        </li>
+        <li class="divider"></li>
+          <li>
+              <a class="waves-circle waves-red" href="/search">
+                  <i class="material-icons">search</i>
+                  Search
+              </a>
+          </li>
+        <li><a class="waves-effect waves-red" href="/msg"><i class="material-icons">message</i>Messages</a></li>
+        <li><a class="waves-effect waves-red" href="/friends"><i class="material-icons">people</i>Friends{{#if isRequest}}<span class="new badge">{{friendsNotification}}</span>{{/if}}</a></li>
+        <li><a class="waves-effect waves-red" href="/feed"><i class="material-icons">web_asset</i>Feed</a></li>
+        <li>
+          <a class="waves-effect waves-red" href="/s">
+            <i class="material-icons">code</i>
+            Snippets
+          </a>
+        </li>
+	      {{#if user.privilege}}
+		      <li>
+          <a class="waves-effect waves-red" href="/d">
+            <i class="material-icons">dashboard</i>
+            Dashboard
+          </a>
+        </li>
+	      {{/if}}
+	      <li>
+          <a class="waves-effect waves-red" href="/g">
+            <i class="material-icons">people</i>
+            Groups
+          </a>
+        </li>
+        <li>
+          <a class="waves-effect waves-red" href="/settings">
+            <i class="material-icons">settings</i>
+            Settings
+          </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a class="waves-effect waves-red" href="/faq">
+            <i class="material-icons">info</i>
+            FAQ
+          </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a class="waves-effect waves-red" href="/logout">
+            <i class="material-icons">exit_to_app</i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </header>
+<div class="container">
+	<main class="z-depth-3">
+		<h1 class="center-align">Snippets</h1>
+		<div class="container">
+			<div class="row right-align">
+				<a class="btn waves-effect waves-red red" href="/s/new">New</a>
+			</div>
+			{{#if snippetsExist}}
+			<div class="row" id="snippets">
+				{{#each snippets}}
+					<div class="col s12 m5 snippet">
+						<a href="/s/view/{{this.id}}"><h5 class="snippet__title">{{this.title}}</h5></a>
+						<p class="snippet__description">{{this.desc}}</p>
+						<p class="snippet__language">{{this.txtLan}}</p>
+						<p class="snippet__type">{{this.visibility}}</p>
+						<a class="btn-floating btn-small waves-effect waves-red red snippet__delete"><i class="material-icons" data-role="delete-snippet" data-snippet="{{this.id}}">close</i></a>
+					</div>
+				{{/each}}
+			{{else}}
+				<div class="row center-align"><h4 style="color: #d1c4e9">No snippets yet. Wanna get started?</h4></div>
+			</div>
+			{{/if}}
+		</div>
+	</main>
+	<aside class="hide-on-med-and-down">
+		<div class="collection">
+			<a class="collection-item waves-effect waves-red" href="/p/{{user.username}}">Profile</a>
+			<a class="collection-item waves-effect waves-red" href="/msg">Messages</a>
+			<a class="collection-item waves-effect waves-red" href="/friends">{{#if isRequest}}<span class="new badge">{{friendsNotification}}</span>{{/if}}Friends</a>
+			<a class="collection-item waves-effect waves-red" href="/feed">Feed</a>
+			<a class="collection-item waves-effect waves-red active" href="/s">Snippets</a>
+			<a class="collection-item waves-effect waves-red" href="/g">Groups</a>
+		</div>
+	</aside>
+</div>

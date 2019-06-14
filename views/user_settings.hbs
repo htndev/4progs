@@ -1,0 +1,427 @@
+<link href="public/stylesheets/report.css" rel="stylesheet">
+<link href="public/stylesheets/friends.css" rel="stylesheet">
+<link href="public/stylesheets/user_panel_aside.css" rel="stylesheet">
+<script defer src="public/javascripts/report.js"></script>
+<script defer src="public/javascripts/update.js"></script>
+<script defer src="public/javascripts/friends.js"></script>
+<div id="preloader" class="visible"></div>
+{{#each res}}
+    <a class="tooltipped btn-floating btn-large waves-effect waves-light red" data-position="left"
+       data-tooltip="Go to the top!"
+       id="to-the-top"><i class="material-icons large" data-role="to-top">keyboard_arrow_up</i></a>
+    <header>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper row">
+                    <a class="brand-logo" href="/"><4<span>P</span>></a>
+                    <a class="sidenav-trigger waves-circle waves-red" data-target="mobile-demo"><i
+                            class="material-icons">menu</i></a>
+                    <!-- TOP NAV -->
+                    <ul class="right hide-on-med-and-down" id="nav-mobile">
+                        <li><a class="waves-circle waves-red btn-floating btn" href="/search"><i
+                                class="material-icons">search</i></a></li>
+                        <li class="header__profile">
+                            <a class="dropdown-trigger header__profile  waves-effect waves-red" data-target="dd-menu"
+                               href="#" id="user-options">
+                                <img alt="{{user_name}}" class="header__profile__img" src="{{avatar}}">
+                                <i class="tiny material-icons right">more_vert</i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- USER MENU (FULL) -->
+                    <ul class="dropdown-content" id="dd-menu">
+                        <li>
+                            <a href="/p/{{user_name}}">
+                                <i class="material-icons">person</i>
+                                <span class="menu-item">{{user_title}}</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/d">
+                                <i class="material-icons">dashboard</i>
+                                <span class="menu-item">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/settings">
+                                <i class="material-icons">settings</i>
+                                <span class="menu-item">Settings</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/faq">
+                                <i class="material-icons">info</i>
+                                <span class="menu-item">FAQ</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/logout">
+                                <i class="material-icons">exit_to_app</i>
+                                <span class="menu-item">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- MOBILE MENU -->
+    <ul class="sidenav" id="mobile-demo">
+    <li>
+        <a class="header__profile__mobile df" href="/p/{{user_name}}">
+            <img alt="{{user_name}}" class="header__sidenav__profile-photo" src="{{avatar}}">
+            <span class="menu-item">{{user_title}}</span>
+        </a>
+{{/each}}
+</li>
+    <li class="divider"></li>
+    <li>
+        <a class="waves-circle waves-red" href="/search">
+            <i class="material-icons">search</i>
+            Search
+        </a>
+    </li>
+    <li>
+        <a class="waves-effect waves-red" href="/msg">
+            <i class="material-icons">message</i>
+            Messages
+
+        </a>
+    </li>
+    <li>
+        <a class="waves-effect waves-red" href="/friends">
+            <i class="material-icons">people</i>
+            {{#if isRequest}}<span class="new badge right">{{friendsNotification}}</span>{{/if}}Friends
+
+        </a>
+    </li>
+    <li>
+        <a class="waves-effect waves-red" href="/feed">
+            <i class="material-icons">web_asset</i>
+            Feed
+        </a>
+    </li>
+    <li>
+        <a class="waves-effect waves-red" href="/s">
+            <i class="material-icons">code</i>
+            Snippets
+        </a>
+    </li>
+    <li>
+        <a class="waves-effect waves-red" href="/d">
+            <i class="material-icons">dashboard</i>
+            Dashboard
+        </a>
+    </li>
+    <li>
+        <a class="waves-effect waves-red" href="/g">
+            <i class="material-icons">people</i>
+            Groups
+        </a>
+    </li>
+
+    <li>
+        <a class="waves-effect waves-red" href="/settings">
+            <i class="material-icons">settings</i>
+            Settings
+        </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a class="waves-effect waves-red" href="/faq">
+            <i class="material-icons">info</i>
+            FAQ
+        </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a class="waves-effect waves-red" href="/logout">
+            <i class="material-icons">exit_to_app</i>
+            Logout
+        </a>
+    </li>
+</ul>
+</header>
+<div class="container">
+<main class="z-depth-2">
+    <div class="row">
+        <h4 class="center-align">Settings</h4>
+    </div>
+<div class="row">
+<div class="col s12">
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a class="active" href="#general" id="generalTab">General</a></li>
+            <li class="tab col s3"><a href="#privacy" id="privacyTab">Privacy</a></li>
+            <li class="tab col s3"><a href="#additional" id="additionalTab">Additional</a></li>
+            <li class="tab col s3"><a href="#links" id="linksTab">Links</a></li>
+        </ul>
+    </div>
+<form action="/settings/settingGeneral" method="post" name="formGeneral">
+<div class="container">
+<div class="col s12" id="general">
+    <!-- FIRST & LAST NAME -->
+    <div class="row">
+        <input name="user-title" type="hidden">
+        <div class="input-field col s12 m6">
+            <input class="validate" id="first_name" required type="text" name="userFstName" value="{{userName}}">
+            <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s12 m6">
+            <input class="validate" id="last_name" required type="text" name="userSurnam" value="{{userSurname}}">
+            <label for="last_name">Last Name</label>
+        </div>
+    </div>
+    <!-- USERNAME -->
+{{#each res}}
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="username" name="userNam" type="text" value="{{user_name}}">
+                <label for="username">Username</label>
+                <span class="helper-text">Username can contain [a-z0-9._] (optional)</span>
+            </div>
+        </div>
+        <!-- BUTTON NEXT -->
+        <div class="row right-align">
+            <button class="waves-effect waves-light btn red" type="submit" value="Save">Save
+            </button>
+        </div>
+    </div>
+    </div>
+    </form>
+        <form name="formPrivacy" method="post" action="/settingPrivacy">
+            <div class="col s12" id="privacy">
+                <!-- PROFILE TYPE -->
+                <div class="row">
+                    <div class="col s12">
+                        <div class="input-field col s12">
+                            <select name="profileType">
+                                <option selected value="0">public</option>
+                                <option value="1">private</option>
+                            </select>
+                            <label>Choose profile type</label>
+                            <span class="helper-text">
+                    <b>public</b> – visible for logged and not logged users<br>
+                    <b>private</b> – visible only for logged users
+                  </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- EMAIL -->
+                <div class="row">
+                    <input name="user-email" type="hidden" value="{{email}}">
+                    <div class="input-field col s12">
+                        <input class="validate" id="email" required type="email"
+                               value="{{email}}" readonly>
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <!-- CHANGE PASSWORD -->
+                <div class="row">
+                    <p class="flow-text deep-purple-text text-lighten-5">Change password</p>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="old-password" name="oldPassword" type="password">
+                        <label for="old-password">Old Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="new-password" name="newPassword" type="password">
+                        <label for="new-password">New password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="new-password-confirmation" name="ConfirmPassword"
+                               type="password">
+                        <label for="new-password-confirmation">New password</label>
+                    </div>
+                </div>
+                <!-- BUTTONS -->
+                <div class="row right-align">
+                    <button class="waves-effect waves-light btn red" type="submit" value="Save">Save
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form action="/settingAdditional" method="post" name="additionalForm" enctype="multipart/form-data">
+            <div class="col s12" id="additional">
+                <!-- STATUS -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input data-length="130" id="user-status" maxlength="130" name="Status"
+                               type="text" value="{{status}}">
+                        <label for="user-status">Status</label>
+                        <span class="helper-text">💭 It will appear on year page. You can change it anytime.</span>
+                    </div>
+                </div>
+                <!-- BIO -->
+                <div class="row">
+                    <div class="col s12">
+                        <div class="input-field col s12">
+                  <textarea class="materialize-textarea" data-length="2000" id="bio" maxlength="2000"
+                            name="Bio">{{bio}}</textarea>
+                            <span class="helper-text">Optional</span>
+                            <label for="bio">Bio</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- AVATAR -->
+                <div class="row">
+                    <div class="col s12">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>BROWSE</span>
+                                <input name="user_avatar" type="file" accept=".jpeg,.jpg,.png">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" name="user_avatar">
+                            </div>
+                            <span class="helper-text">Choose your avatar (optional)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- BUTTONS -->
+                <div class="row right-align">
+                    <button class="waves-effect waves-light btn red" value="Save" type="submit">Save
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form name="links" method="post" action="/settings/settingLinks">
+            <div class="col s12" id="links">
+                <!-- Website & GitHub -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="far fa-compass prefix"></i>
+                        <input id="website" name="website" type="text">
+                        <label for="website">Your website</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-github prefix"></i>
+                        <input id="github" name="github" type="text">
+                        <label for="github">GitHub</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                </div>
+                <!-- GitLab & BitBucket -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-gitlab prefix"></i>
+                        <input id="gitlab" name="gitlab" type="text">
+                        <label for="gitlab">GitLab</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-bitbucket prefix"></i>
+                        <input id="bitbucket" type="text" name="bitbucket">
+                        <label for="bitbucket">BitBucket</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                </div>
+                <!-- Telegram & WhatsApp -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-telegram prefix"></i>
+                        <input id="telegram" name="telegram" type="text">
+                        <label for="telegram">Telegram nickname or phone</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-whatsapp prefix"></i>
+                        <input id="whatsapp" name="whatsapp" type="text">
+                        <label for="whatsapp">WhatsApp phone</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                </div>
+                <!-- Viber & Facebook -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-viber prefix"></i>
+                        <input id="viber" name="viber" type="text">
+                        <label for="viber">Viber phone</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-facebook prefix"></i>
+                        <input id="facebook" name="facebook" type="text">
+                        <label for="facebook">Facebook</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                </div>
+                <!-- Twitter & Skype-->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-twitter prefix"></i>
+                        <input id="twitter" name="twitter" type="text">
+                        <label for="twitter">Twitter</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-skype prefix"></i>
+                        <input id="skype" name="skype" type="text">
+                        <label for="skype">Skype login</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                </div>
+                <!-- Discord & LinkedIn -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-discord prefix"></i>
+                        <input id="discord" name="discord" type="text">
+                        <label for="discord">Discord</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-linkedin prefix"></i>
+                        <input id="linkedin" name="linkedin" type="text">
+                        <label for="linkedin">LinkedIn</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                </div>
+                <!-- Slack & Email -->
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="fab fa-slack prefix"></i>
+                        <input id="slack" name="slack" type="text">
+                        <label for="slack">Slack</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="fas fa-envelope prefix"></i>
+                        <input id="corp-email" name="corp_email" type="text">
+                        <label for="corp-email">Email for contacting</label>
+                        <span class="helper-text">Optional</span>
+                    </div>
+                </div>
+                <!-- BUTTONS -->
+                <div class="row right-align">
+                    <button class="waves-effect waves-light btn red" value="Save" type="submit">Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    </main>
+{{/each}}
+        <aside class="hide-on-med-and-down">
+            <div class="collection">
+                <a class="collection-item waves-effect waves-red active" href="/p/{{user_name}}">Profile</a>
+                <a class="collection-item waves-effect waves-red" href="/msg">Messages</a>
+                <a class="collection-item waves-effect waves-red" href="/friends">{{#if isRequest}}<span class="new badge">{{friendsNotification}}</span>{{/if}}Friends</a>
+                <a class="collection-item waves-effect waves-red" href="/feed">Feed</a>
+                <a class="collection-item waves-effect waves-red" href="/s">Snippets</a>
+                <a class="collection-item waves-effect waves-red" href="/g">Groups</a>
+
+
+            </div>
+        </aside>
+    </div>

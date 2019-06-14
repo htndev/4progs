@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Oswald:400,600|Roboto+Condensed&subset=cyrillic");
+main {
+  width: 70%;
+  margin: 1rem auto 3rem;
+}
+main .main__img img {
+  display: block;
+  width: 8rem;
+  margin: 0.5rem 0.5rem 0.5rem auto;
+  height: 8rem;
+  border-radius: 50%;
+}
+main .main__info__top h3 {
+  color: #ecf0f1;
+  font-size: 1.5em;
+}
+main .main__info__top h4 {
+  color: #D1D8E0;
+  font-size: 1em;
+  line-height: 1.5;
+}
+main .main__info__top h4 span:first-child {
+  margin-right: 0.5rem;
+}
+main .main__info__top h5 {
+  color: #D1D8E0;
+  font-size: 1em;
+}
+main .main__info__top h5 .work {
+  color: #535c68;
+}
+main .main__info__top h5 a {
+  cursor: pointer;
+}
+main .main__social__links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+main .main__social__links a {
+  color: #D1D8E0;
+  font-size: 1.3em;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  padding: 1rem;
+}
+main .main__social__links a:hover {
+  color: #c0392b;
+}
+main .main__bio {
+  color: #D1D8E0;
+}
+
+@media all and (max-width: 600px) {
+  main {
+    width: 100%;
+  }
+}

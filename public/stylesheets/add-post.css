@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Oswald:400,600|Roboto+Condensed&subset=cyrillic");
+.modal-content h4 {
+  color: #ecf0f1;
+}
+.modal-content textarea {
+  min-height: 10rem;
+}
+
+form {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+#new-post__documents {
+  margin-top: 0.5rem;
+}
+
+.new-posts__attachment .row {
+  background: #222f3e;
+  border-radius: 0.4rem;
+  margin-bottom: 5rem;
+  color: #D1D8E0;
+  padding: 0.5rem;
+}

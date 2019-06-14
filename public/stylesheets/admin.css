@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Oswald:400,600|Roboto+Condensed&subset=cyrillic");
+body .btn-wrapper {
+  width: 5rem;
+  height: 5rem;
+  position: fixed;
+  bottom: 3rem;
+  left: 1rem;
+}
+body main h1 {
+  margin-bottom: 1rem;
+}
+body main table thead th {
+  color: #ecf0f1;
+}
+body main table tr th, body main table tr td {
+  text-align: center;
+  color: #ecf0f1;
+  font-family: "Open Sans", sans-serif;
+}
+body main .live-input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  font-family: "Open Sans", sans-serif;
+  color: #D1D8E0;
+  background: transparent;
+  outline: none;
+  font-size: 1.2em;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.4rem;
+  resize: none;
+}
+body main .live-input:focus {
+  background: rgba(0, 0, 0, 0.2);
+}

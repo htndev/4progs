@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Oswald:400,600|Roboto+Condensed&subset=cyrillic");
+
+.chat {
+	/*border:   1px solid red;*/
+	padding:  .5rem;
+	width:    100%;
+	height:   40rem;
+	overflow: auto;
+	margin-bottom: 2rem;
+}
+
+.chat__msg {
+	background:    #222F3E;
+	padding:       .5rem;
+	border-radius: .3rem;
+	position:      relative;
+	color:         #535C68
+}
+
+.chat__img {
+	display:       block;
+	width:         4rem;
+	height:        4rem;
+	border-radius: 50%;
+}
+
+.chat__date {
+	position:  absolute;
+	right:     .3rem;
+	top:       .3rem;
+	font-size: .6em;
+}
+
+.chat__title {
+	font-size: 1.5em;
+}
+
+.chat__message {
+	color: #D1D1D1;
+}
+
+body main {
+	width: 70%;
+}

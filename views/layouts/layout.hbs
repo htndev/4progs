@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="public/stylesheets/main.css" rel="stylesheet">
+	<link href="public/stylesheets/welcome.css" rel="stylesheet">
+	<link href="public/images/favicon/logo_flat.png" rel="icon">
+	<script defer src="public/javascripts/jquery.min.js"></script>
+	<script defer src="public/javascripts/materialize.js"></script>
+	<script defer src="public/javascripts/welcome.js"></script>
+	<script defer src="public/javascripts/main.js"></script>
+	<link href="public/images/favicon/logo_flat.png" rel="icon">
+	<script src="public/javascripts/loading.js"></script>
+	<script src="public/javascripts/socket.io.js"></script>
+	<script defer src="public/javascripts/message.js"></script>
+	<title>{{title}}</title>
+</head>
+<body>
+<div id="username" style="display: none;">{{username}}</div>
+{{{body}}}
+<script>
+	let nickname = document.querySelector( '#username' ).innerText;
+	document.body.removeChild( document.querySelector( '#username' ) );
+	const socket = io.connect( location.origin, { query: `nickname=${ nickname }` } );
+	socket.on( 'connect', () => {
+		// console.log( socket );
+	} );
+</script>
+</body>
+</html>

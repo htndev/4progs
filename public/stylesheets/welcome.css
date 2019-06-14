@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Oswald:400,600|Roboto+Condensed&subset=cyrillic");
+body main {
+  margin-top: 0.5rem;
+  padding: 1rem;
+}
+body main .card {
+  background: #2F3640;
+}
+body main .card .card-image {
+  background: #2F3640;
+}
+body main .card .card-image img {
+  display: block;
+  width: 40%;
+  height: auto;
+  margin: 0 auto 0.2rem;
+}
+body main .card .card-content .card-title {
+  color: #ecf0f1;
+}
+body main .card .card-reveal {
+  background: #222f3e;
+  color: #D1D8E0;
+}
+body main .card .card-reveal .card-title {
+  color: #ecf0f1;
+}

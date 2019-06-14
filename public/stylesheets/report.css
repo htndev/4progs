@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Oswald:400,600|Roboto+Condensed&subset=cyrillic");
+.modal form .modal-content h4 {
+  color: #ecf0f1;
+}
+.modal form .modal-content .report__object {
+  padding: 0.5rem;
+  background: #2F3640;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #222f3e;
+  border-radius: 0.3rem;
+}
+.modal form .modal-content .report__object p {
+  color: #D1D8E0;
+}
+.modal form .modal-content .report__object__link {
+  color: #c0392b;
+  margin-left: 0.3rem;
+}
+.modal form .modal-content .report__object img {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+.modal form .modal-content .report__user-entry textarea {
+  color: #D1D8E0;
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  min-height: 14rem;
+  resize: none;
+  border: 0.1rem solid;
+  outline: none;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.3rem;
+}
+.modal form .modal-content .report__user-entry textarea:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(192, 57, 43, 0.7);
+          box-shadow: 0 0 0 0.2rem rgba(192, 57, 43, 0.7);
+}
+.modal form .modal-content .report__user-entry textarea::-webkit-input-placeholder {
+  color: #535c68;
+}
+.modal form .modal-content .report__user-entry textarea:-ms-input-placeholder {
+  color: #535c68;
+}
+.modal form .modal-content .report__user-entry textarea::-ms-input-placeholder {
+  color: #535c68;
+}
+.modal form .modal-content .report__user-entry textarea::placeholder {
+  color: #535c68;
+}
+.modal form .modal-content .report__user-entry select {
+  color: #ecf0f1;
+}
+.modal form .modal-content .report__user-entry select option {
+  color: #ecf0f1;
+}
+.modal form .modal-content .report__user-entry .input-field .select-wrapper .select-dropdown {
+  color: #ecf0f1;
+}

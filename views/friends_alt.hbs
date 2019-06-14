@@ -1,0 +1,214 @@
+<link href="public/images/favicon/logo_flat.png" rel="icon">
+<link href="public/stylesheets/main.css" rel="stylesheet">
+<link href="public/stylesheets/report.css" rel="stylesheet">
+<link href="public/stylesheets/friends.css" rel="stylesheet">
+<link href="public/stylesheets/user_panel_aside.css" rel="stylesheet">
+<script defer src="public/javascripts/friends.js"></script>
+<div id="preloader" class="visible"></div>
+<a class="tooltipped btn-floating btn-large waves-effect waves-light red" data-position="left"
+   data-tooltip="Go to the top!"
+   id="to-the-top"><i class="material-icons large" data-role="to-top">keyboard_arrow_up</i></a>
+<header>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper row">
+                <a class="brand-logo" href="/"><4<span>P</span>></a>
+                <a class="sidenav-trigger waves-circle waves-red" data-target="mobile-demo" href="#">
+                    <i class="material-icons">menu</i>
+                </a>
+	            <!-- TOP NAV -->
+                <ul class="right hide-on-med-and-down" id="nav-mobile">
+                    <li>
+                        <a class="waves-circle waves-red btn-floating btn" href="/search">
+                            <i class="material-icons">search</i>
+                        </a>
+                    </li>
+                    <li class="header__profile">
+                        <a class="dropdown-trigger header__profile  waves-effect waves-red" data-target="dd-menu"
+                           href="#" id="user-options">
+                            <img alt="{{userName}}" class="header__profile__img" src="{{userAvatar}}">
+                            <i class="tiny material-icons right">more_vert</i>
+                        </a>
+                    </li>
+                </ul>
+	            <!-- USER MENU (FULL) -->
+                <ul class="dropdown-content" id="dd-menu">
+                    <li>
+                        <a href="/p/{{user_name}}">
+                            <i class="material-icons">person</i>
+                            <span class="menu-item">{{userTitle}}</span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/settings">
+                            <i class="material-icons">settings</i>
+                            <span class="menu-item">Settings</span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/faq">
+                            <i class="material-icons">info</i>
+                            <span class="menu-item">FAQ</span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/logout">
+                            <i class="material-icons">exit_to_app</i>
+                            <span class="menu-item">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+	<!-- MOBILE MENU -->
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <a class="header__profile__mobile df" href="/p/{{userName}}">
+                <img alt="{{userTitle}}" class="header__sidenav__profile-photo" src="{{userAvatar}}">
+                <span class="menu-item">{{userTitle}}</span>
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="waves-circle waves-red" href="/search">
+                <i class="material-icons">search</i>
+                Search
+            </a>
+        </li>
+        <li>
+            <a class="waves-effect waves-red" href="/msg"><i class="material-icons">message</i>Messages</a>
+        </li>
+        <li>
+            <a class="waves-effect waves-red" href="/friends">
+                <i class="material-icons">people</i>
+                Friends
+	            {{#if isRequest}}
+		            <span class="new badge right">{{friendsNotification}}</span>{{/if}}
+            </a>
+        </li>
+        <li>
+            <a class="waves-effect waves-red" href="/feed">
+                <i class="material-icons">web_asset</i>
+                Feed
+            </a>
+        </li>
+        <li>
+            <a class="waves-effect waves-red" href="/s">
+                <i class="material-icons">code</i>
+                Snippets
+            </a>
+        </li>
+        <li>
+            <a class="waves-effect waves-red" href="/d">
+                <i class="material-icons">dashboard</i>
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a class="waves-effect waves-red" href="/g">
+                <i class="material-icons">people</i>
+                Groups
+            </a>
+        </li>
+
+        <li>
+            <a class="waves-effect waves-red" href="/s">
+                <i class="material-icons">settings</i>
+                Settings
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="waves-effect waves-red" href="/faq">
+                <i class="material-icons">info</i>
+                FAQ
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="waves-effect waves-red" href="/logout">
+                <i class="material-icons">exit_to_app</i>
+                Logout
+            </a>
+        </li>
+    </ul>
+</header>
+<div class="container">
+    <main class="z-depth-2">
+        <div class="row">
+            <div class="col s12">
+                <div class="friends__body">
+                    <div class="row">
+                        <div class="col s12 m6 push-m3">
+                            <ul class="tabs">
+                                <li class="tab col s4 m4"><a class="active" href="#all">All</a></li>
+                                <li class="tab col s4 m4"><a href="#online">Online</a></li>
+                                <li class="tab col s4 m4"><a href="#requests">Requests</a></li>
+                            </ul>
+                        </div>
+                        <div class="col s12" id="all">
+	                        {{#each friendsList}}
+		                        <div class="friends__body__item">
+                                    <div class="row">
+                                        <div class="col s4 m2">
+                                            <a href="/p/{{user_name}}"><img alt="Username" class="friends__item__avatar{{#if online}} online{{/if}}" src="{{avatar}}"></a>
+                                        </div>
+                                        <div class="col s6 m6">
+                                            <a href="/p/{{user_name}}"><h4 class="flow-text">{{user_title}}</h4></a>
+                                        </div>
+                                        <div class="col s2 m4 right-align">
+                                            <a href="/friends/{{user_name}}/delete" class="btn-floating btn waves-effect waves-circle red">
+                                                <i class="material-icons" data-group="qwe" data-role="remove-friend">close</i></a>
+                                        </div>
+                                    </div>
+                                </div>
+	                        {{/each}}
+                        </div>
+                        <div class="col s12" id="online">
+                        </div>
+                        <div class="col s12" id="requests">
+                            <div class="col s12" id="all">
+	                            {{#each requestList}}
+		                            <div class="friends__body__item">
+                                        <div class="row">
+                                            <div class="col s4 m2">
+                                                <a href="/p/{{user_name}}"><img alt="{{user_title}}" class="friends__item__avatar" src="{{avatar}}"></a>
+                                            </div>
+                                            <div class="col s6 m6">
+                                                <a href="/p/{{user_name}}"><h4 class="flow-text">{{user_title}}</h4></a>
+                                            </div>
+                                            <div class="col s2 m4 right-align">
+                                                <a href="/friends/{{user_name}}/add" class="btn-floating btn waves-effect waves-circle red">
+                                                    <i class="material-icons" data-group="qwe"
+                                                       data-role="remove-friend">add</i></a>
+                                                <a href="/friends/{{user_name}}/removeRequests"
+                                                   class="btn-floating btn waves-effect waves-circle red">
+                                                    <i class="material-icons" data-group="qwe"
+                                                       data-role="remove-friend">close</i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+	                            {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <aside class="hide-on-med-and-down">
+        <div class="collection">
+            <a class="collection-item waves-effect waves-red" href="/p/{{userName}}">Profile</a>
+            <a class="collection-item waves-effect waves-red" href="/msg">Messages</a>
+            <a class="collection-item waves-effect waves-red active" href="/friends">{{#if isRequest}}
+	            <span class="new badge">{{friendsNotification}}</span>{{/if}}Friends</a>
+            <a class="collection-item waves-effect waves-red" href="/feed">Feed</a>
+            <a class="collection-item waves-effect waves-red" href="/s">Snippets</a>
+            <a class="collection-item waves-effect waves-red" href="/g">Groups</a>
+        </div>
+    </aside>
+</div>

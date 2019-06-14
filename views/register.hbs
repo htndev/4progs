@@ -1,0 +1,241 @@
+<script defer src="public/javascripts/register.js"></script>
+<div id="preloader" class="visible"></div>
+<header>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper row">
+          <a class="brand-logo center" href="/"><4<span>P</span>></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <main class="z-depth-3">
+      <div class="row center-align">
+        <h3>You successfully confirmed your email, thank you!</h3>
+        <h4>Fill the following statements to finish registration.</h4>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s4"><a class="active" href="#general" id="generalTab">General</a></li>
+            <li class="tab col s4"><a href="#additional" id="additionalTab">Additional</a></li>
+            <li class="tab col s4"><a href="#links" id="linksTab">Links</a></li>
+          </ul>
+        </div>
+        <form action="/registration/confirm/{{token}}" method="post" enctype="multipart/form-data" name="registration">
+          <div class="col s12" id="general">
+            <!-- FIRST & LAST NAME -->
+            <div class="row">
+              <input name="user-title" type="hidden">
+              <div class="input-field col s12 m6">
+                <input class="validate" id="first_name" type="text" name="first_name">
+                <label for="first_name">First Name</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <input class="validate" id="last_name" type="text" name="last_name">
+                <label for="last_name">Last Name</label>
+              </div>
+            </div>
+	          <!-- USERNAME -->
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="username" name="username" type="text" maxlength="30">
+                <label for="username">Username</label>
+                <span class="helper-text">Username can contain [A-Za-z0-9._] (optional)</span>
+              </div>
+            </div>
+	          <!-- EMAIL -->
+            <div class="row">
+              <input name="user_email" type="hidden" value="{{email}}">
+              <div class="input-field col s12">
+                <input class="validate" disabled id="email" required type="email" value="{{email}}">
+                <label for="email">Email</label>
+              </div>
+            </div>
+	          <!-- PROFILE TYPE -->
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field col s12">
+                  <select name="profile_type">
+                    <option selected value="public">public</option>
+                    <option value="private">private</option>
+                  </select>
+                  <label>Choose profile type</label>
+                  <span class="helper-text">
+                    <b>public</b> – visible for logged and not logged users<br>
+                    <b>private</b> – visible only for logged users
+                  </span>
+                </div>
+              </div>
+            </div>
+	          <!-- BUTTON NEXT -->
+            <div class="row right-align">
+              <a class="waves-effect waves-light btn red" id="nextAdditional">Next</a>
+            </div>
+          </div>
+          <div class="col s12" id="additional">
+            <!-- STATUS -->
+            <div class="row">
+              <div class="input-field col s12">
+                <input data-length="130" id="user-status" maxlength="130" name="user_status" type="text">
+                <label for="user-status">Status</label>
+                <span class="helper-text">💭 It will appear on year page. You can change it anytime.</span>
+              </div>
+            </div>
+	          <!-- BIO -->
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field col s12">
+                  <textarea class="materialize-textarea" data-length="2000" id="bio" maxlength="2000"
+                            name="bio"></textarea>
+                  <span class="helper-text">Optional</span>
+                  <label for="bio">Bio</label>
+                </div>
+              </div>
+            </div>
+	          <!-- AVATAR -->
+            <div class="row">
+              <div class="col s12">
+                <div class="file-field input-field">
+                  <div class="btn">
+                    <span>BROWSE</span>
+                    <input name="user_avatar" type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                  </div>
+                  <span class="helper-text">Choose your avatar (optional)</span>
+                </div>
+              </div>
+            </div>
+	          <!-- BUTTONS -->
+            <div class="row">
+              <div class="col s6">
+                <a class="waves-effect waves-light btn red" id="backGeneral">Back</a>
+              </div>
+              <div class="col s6 right-align">
+                <a class="waves-effect waves-light btn" id="nextLinks">Next</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s12" id="links">
+            <!-- Website & GitHub -->
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <i class="far fa-compass prefix"></i>
+                <input id="website" name="website" type="text">
+                <label for="website">Your website</label>
+                <span class="helper-text">Optional</span>
+              </div>
+              <div class="input-field col s12 m6">
+                <i class="fab fa-github prefix"></i>
+                <input id="github" name="github" type="text">
+                <label for="github">GitHub</label>
+                <span class="helper-text">Optional</span>
+              </div>
+            </div>
+	          <!-- GitLab & BitBucket -->
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <i class="fab fa-gitlab prefix"></i>
+                <input id="gitlab" name="gitlab" type="text">
+                <label for="gitlab">GitLab</label>
+                <span class="helper-text">Optional</span>
+              </div>
+              <div class="input-field col s12 m6">
+                <i class="fab fa-bitbucket prefix"></i>
+                <input id="bitbucket" type="text" name="bitbucket">
+                <label for="bitbucket">BitBucket</label>
+                <span class="helper-text">Optional</span>
+              </div>
+            </div>
+	          <!-- Telegram & WhatsApp -->
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <i class="fab fa-telegram prefix"></i>
+                <input id="telegram" name="telegram" type="text">
+                <label for="telegram">Telegram nickname or phone</label>
+                <span class="helper-text">Optional</span>
+              </div>
+              <div class="input-field col s12 m6">
+                <i class="fab fa-whatsapp prefix"></i>
+                <input id="whatsapp" name="whatsapp" type="text">
+                <label for="whatsapp">WhatsApp phone</label>
+                <span class="helper-text">Optional</span>
+              </div>
+            </div>
+	          <!-- Viber & Facebook -->
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <i class="fab fa-viber prefix"></i>
+                <input id="viber" name="viber" type="text">
+                <label for="viber">Viber phone</label>
+                <span class="helper-text">Optional</span>
+              </div>
+              <div class="input-field col s12 m6">
+                <i class="fab fa-facebook prefix"></i>
+                <input id="facebook" name="facebook" type="text">
+                <label for="facebook">Facebook</label>
+                <span class="helper-text">Optional</span>
+              </div>
+            </div>
+	          <!-- Twitter & Skype-->
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <i class="fab fa-twitter prefix"></i>
+                <input id="twitter" name="twitter" type="text">
+                <label for="twitter">Twitter</label>
+                <span class="helper-text">Optional</span>
+              </div>
+              <div class="input-field col s12 m6">
+                <i class="fab fa-skype prefix"></i>
+                <input id="skype" name="skype" type="text">
+                <label for="skype">Skype login</label>
+                <span class="helper-text">Optional</span>
+              </div>
+            </div>
+	          <!-- Discord & LinkedIn -->
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <i class="fab fa-discord prefix"></i>
+                <input id="discord" name="discord" type="text">
+                <label for="discord">Discord</label>
+                <span class="helper-text">Optional</span>
+              </div>
+              <div class="input-field col s12 m6">
+                <i class="fab fa-linkedin prefix"></i>
+                <input id="linkedin" name="linkedin" type="text">
+                <label for="linkedin">LinkedIn</label>
+                <span class="helper-text">Optional</span>
+              </div>
+            </div>
+	          <!-- Slack & Email -->
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <i class="fab fa-slack prefix"></i>
+                <input id="slack" name="slack" type="text">
+                <label for="slack">Slack</label>
+                <span class="helper-text">Optional</span>
+              </div>
+              <div class="input-field col s12 m6">
+                <i class="fas fa-envelope prefix"></i>
+                <input id="corp-email" name="corp_email" type="text">
+                <label for="corp-email">Email for contacting</label>
+                <span class="helper-text">Optional</span>
+              </div>
+            </div>
+	          <!-- BUTTONS -->
+            <div class="row">
+              <div class="col s6">
+                <a class="waves-effect waves-light btn red" id="backToAdditional">Back</a>
+              </div>
+              <div class="col s6 right-align">
+                <button class="waves-effect waves-light btn" id="submitRegistration" type="submit">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
